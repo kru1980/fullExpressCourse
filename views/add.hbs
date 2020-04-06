@@ -1,0 +1,27 @@
+<section class="add-course">
+   <div class="container">
+      <div class="row">
+         <div class="col s12 ">
+            <h3>Добавить курс</h3>
+            <form action="/add" method="POST">
+               <div class="input-field">
+                  <input type="text" id="title" name="title" class="validate" required>
+                  <label for="title">Название курса</label>
+                  <span class="helper-text" data-error="Введите название курса"></span>
+               </div>
+               <div class="input-field">
+                  <input type="number" id="price" name="price" class="validate" min="1" required>
+                  <label for="price">Цена курса</label>
+                  <span class="helper-text" data-error="Введите цену курса"></span>
+               </div>
+               <div class="input-field">
+                  <input type="text" id="img" name="img" class="validate" required>
+                  <label for="img">URL картинки</label>
+                  <span class="helper-text" data-error="Введите URL картинки"></span>
+               </div>
+               <button class="btn btn-primary">Добавить курс</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</section>
