@@ -21,6 +21,7 @@ app.use(bodyParser.json())
 app.use(express.static("public"));
 app.use("/", routesApp.homeRoute);
 app.use("/add", routesApp.addCourseRoute);
+app.use("/card", routesApp.addCardRoute);
 app.use("/login", routesApp.loginRoute);
 app.use("/courses", routesApp.coursesRoute);
 
