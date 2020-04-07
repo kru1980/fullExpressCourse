@@ -13,21 +13,22 @@ const p = path.join(
 class Card {
   static async add(course) {
     // получаем из модели все  данные корзины
-    const card = Card.fetch();
+    const card = await Card.fetch();
     // определяем индекс курса, но его может не быть
-    try {
-      const idx = card.courses.findIndex((c) => c.id === course.id);
-      // ищем существует ли курс или нет
 
-      const candidate = card.courses[idx];
-    } catch (error) {}
+    const idx = card.courses.findIndex((c) => c.id === course.id);
+    // ищем существует ли курс или нет
+
+    const candidate = card.courses[idx];
+
     if (candidate) {
       candidate.count++;
       // тк счетчик уже присутствует , то при доб второго курса, счетчик увеличивается на еденицу + обновляем данные о курсе
       card.courses[idx] = candidate;
     } else {
       // еще нет надо его добавить, добавляем ему счетчик
-      courses.count = 1;
+      // те курсу переданому в ф-цию add присваиваем count
+      course.count = 1;
       card.courses.push(course);
     }
     // 3 шаг укажем у карточки общ стоимость курсов , знак +, на всякий случай чтобы цена приняла формат цифры
@@ -54,6 +55,33 @@ class Card {
       });
     });
   }
+
+  static async remove(id) {
+    const card = await Card.fetch();
+    const idx = card.courses.findIndex((c) => c.id === id);
+    const course = card.courses[idx];
+
+    if (course.count === 1) {
+      // remove
+      card.courses = card.courses.filter((c) => c.id !== id);
+    } else {
+      // update
+      card.courses[idx].count--;
+    }
+    // update price in model
+    card.price -= course.price;
+    return new Promise((resolve, reject) => {
+      fs.writeFile(p, JSON.stringify(card), (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(card);
+        }
+      });
+    });
+  }
 }
 
 module.exports = Card;
+
+

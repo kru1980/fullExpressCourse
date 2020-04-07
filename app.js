@@ -3,7 +3,7 @@ const exphbs = require("express-handlebars");
 const routesApp = require("./routes");
 const bodyParser = require('body-parser')
 const PORT = process.env.PORT || 3000;
-
+const path = require('path');
 
 const app = express();
 const hbs = exphbs.create({
@@ -18,7 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // midllewares
-app.use(express.static("public"));
+// ! не корректно назначать таким образом статическую папку public
+// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use("/", routesApp.homeRoute);
 app.use("/add", routesApp.addCourseRoute);
 app.use("/card", routesApp.addCardRoute);
