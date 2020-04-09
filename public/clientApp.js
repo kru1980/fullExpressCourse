@@ -9,11 +9,29 @@ document.querySelectorAll(".price").forEach((node) => {
   node.textContent = toCurrency(node.textContent);
 });
 
+const toDate = date => {
+  return new Intl.DateTimeFormat('ru-RU', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  }).format(new Date(date))
+}
+
+document.querySelectorAll('.date').forEach(node => {
+  node.textContent = toDate(node.textContent)
+})
+
 const $card = document.querySelector("#card");
 if ($card) {
   $card.addEventListener("click", (event) => {
     if (event.target.classList.contains("js-remove")) {
       const id = event.target.dataset.id;
+      // debugger;
+      // const url = "/card/remove/" + id;
+      // console.log(url);
 
       fetch("/card/remove/" + id, {
         method: "delete",
@@ -28,7 +46,7 @@ if ($card) {
                 <td>${c.title}</td>
                 <td>${c.count}</td>
                 <td>
-                  <button class="btn btm-small js-remove" data-id="${c.id}">Удалить</button>
+                  <button class="btn btm-small js-remove" data-id="${c._id}">Удалить</button>
                 </td>
               </tr>
               `;

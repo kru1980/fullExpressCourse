@@ -12,7 +12,7 @@ $main-bg: red;
   display: flex;
   flex-direction: column;
   align-items: center;
-  h1{
+  h1 {
     margin-bottom: 2 rem;
   }
   img {
@@ -24,8 +24,11 @@ $main-bg: red;
   }
 }
 
-.actions{
+.actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.course-form {
+  margin-bottom: 2rem;
 }
