@@ -6,11 +6,16 @@ const PORT = process.env.PORT || 3000;
 const path = require("path");
 const mongoose = require("mongoose");
 const User = require("./models/user");
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+
 
 const app = express();
+
 const hbs = exphbs.create({
   defaultLayout: "main",
-  extname: "hbs"
+  extname: "hbs",
+  handlebars: allowInsecurePrototypeAccess(Handlebars)
 
 
 });
