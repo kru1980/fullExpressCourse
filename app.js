@@ -15,11 +15,10 @@ const varMiddleware = require("./middleware/variables");
 const userMiddleware = require("./middleware/user");
 const csrf = require('csurf')
 const flash = require('connect-flash');
+const keys=require('./keys');
 
 const app = express();
 
-const MONGODB_URI =
-  "mongodb+srv://kru1980:022749@cluster0-ezfph.mongodb.net/shop";
 
 const hbs = exphbs.create({
   defaultLayout: "main",
@@ -28,7 +27,7 @@ const hbs = exphbs.create({
 });
 
 const store = new MongoStore({
-  uri: MONGODB_URI,
+  uri: keys.MONGODB_URI,
   collection: "sessions",
 });
 
@@ -41,9 +40,9 @@ app.use(bodyParser.json());
 
 app.use(
   session({
-    secret: "keyboard cat",
-    resave: false,
+    secret: keys.SESSION_SECRET,
     saveUninitialized: false,
+    resave:true,
     store,
   })
 );
@@ -57,7 +56,7 @@ app.use(userMiddleware);
 
 async function start() {
   try {
-    await mongoose.connect(MONGODB_URI, {
+    await mongoose.connect(keys.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
