@@ -19,9 +19,14 @@
   },
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^2.3.1",
+    "csurf": "^1.11.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
+    "express-session": "^1.17.0",
     "handlebars": "^4.7.6",
     "mongoose": "^5.9.7",
     "uuid": "^7.0.3"
