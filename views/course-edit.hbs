@@ -1,10 +1,13 @@
 <section class="add-course">
-    <h1>Редактировать курс {{course.title}}</h1>
+    <h1>Редактировать курс {{title}}</h1>
    <div class="container">
       <div class="row">
          <div class="col s12 ">
             <h3>Добавить курс</h3>
-            <form action="/courses/edit" method="POST" class="course-form">
+            {{#if editCourseError}}
+               <p class="alert">{{editCourseError}}</p>
+            {{/if}}
+            <form action="/courses/edit" method="POST" class="course-form" novalidate>
                <div class="input-field">
                   <input type="text" id="title" name="title" class="validate" required value="{{title}}">
                   <label for="title">Название курса</label>

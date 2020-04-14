@@ -5,6 +5,7 @@ const coursesRoute = require("./courses");
 const addCourseRoute = require("./add");
 const addCardRoute = require("./card");
 const ordersRoute = require("./orders");
+const profileRoute = require("./profile");
 
 
 
@@ -15,4 +16,5 @@ module.exports = {
     addCourseRoute,
     addCardRoute,
     ordersRoute,
+    profileRoute
 }

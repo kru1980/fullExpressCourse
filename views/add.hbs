@@ -3,19 +3,22 @@
       <div class="row">
          <div class="col s12 ">
             <h3>Добавить курс</h3>
-            <form action="/add" method="POST">
+             {{#if addCourseError}}
+               <p class="alert">{{addCourseError}}</p>
+            {{/if}}
+            <form action="/add" method="POST" novalidate>
                <div class="input-field">
-                  <input type="text" id="title" name="title" class="validate" required>
+                  <input type="text" id="title" name="title" class="validate" required value="{{data.title}}">
                   <label for="title">Название курса</label>
                   <span class="helper-text" data-error="Введите название курса"></span>
                </div>
                <div class="input-field">
-                  <input type="number" id="price" name="price" class="validate" min="1" required>
+                  <input type="number" id="price" name="price" class="validate" min="1" required value="{{data.price}}">
                   <label for="price">Цена курса</label>
                   <span class="helper-text" data-error="Введите цену курса"></span>
                </div>
                <div class="input-field">
-                  <input type="text" id="img" name="img" class="validate" required>
+                  <input type="text" id="img" name="img" class="validate" required value="{{data.img}}">
                   <label for="img">URL картинки</label>
                   <span class="helper-text" data-error="Введите URL картинки"></span>
                </div>
